@@ -1,0 +1,85 @@
+/* ─── Base Reset & Global Styles ─────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import custom layer utilities */
+@layer base {
+  /* Set the default dark background and font */
+  html, body, #root {
+    @apply bg-surface-900 text-white font-sans min-h-screen;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom scrollbar — subtle and themed */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-800;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-500;
+  }
+}
+
+@layer components {
+  /* ── Glass Card ──────────────────────────────────────────────────────────── */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl;
+  }
+
+  /* ── Glow Button ─────────────────────────────────────────────────────────── */
+  .btn-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+    @apply bg-gradient-to-r from-brand-600 to-brand-500;
+    @apply hover:from-brand-500 hover:to-accent-500;
+    @apply shadow-lg hover:shadow-brand-500/40;
+    @apply active:scale-95;
+  }
+
+  /* ── Input Field ─────────────────────────────────────────────────────────── */
+  .input-field {
+    @apply w-full bg-surface-700 border border-white/10 rounded-xl px-4 py-3;
+    @apply text-white placeholder-white/30 font-mono;
+    @apply focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500/50;
+    @apply transition-all duration-200;
+  }
+
+  /* ── Badge ───────────────────────────────────────────────────────────────── */
+  .badge-green {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    @apply bg-emerald-500/15 text-emerald-400 border border-emerald-500/30;
+  }
+
+  .badge-purple {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    @apply bg-brand-500/15 text-brand-400 border border-brand-500/30;
+  }
+}
+
+@layer utilities {
+  /* Noise texture overlay for depth */
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #818cf8 0%, #ec4899 100%);
+  }
+}

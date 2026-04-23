@@ -1,0 +1,31 @@
+[package]
+name = "tip_jar"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+# Enable testutils for unit testing (not included in production wasm)
+testutils = ["soroban-sdk/testutils"]
+
+[dependencies]
+# soroban-sdk v22 matches stellar-cli v26 (protocol 22)
+soroban-sdk = "22.0.0"
+
+[dev-dependencies]
+# Enable test utilities only during testing
+soroban-sdk = { version = "22.0.0", features = ["testutils"] }
+
+[profile.release]
+# Optimize wasm size
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
