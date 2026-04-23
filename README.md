@@ -1,8 +1,6 @@
-<div align="center">
-
 # 🫙 Crypto Tip Jar
 
-### A decentralized tip jar built on Stellar Soroban
+## A decentralized tip jar built on Stellar Soroban
 
 **Send XLM tips directly on-chain. No backend. No middlemen. Just code.**
 
@@ -12,8 +10,6 @@
 [![Rust](https://img.shields.io/badge/Rust-Smart_Contract-orange?logo=rust&logoColor=white)](https://www.rust-lang.org)
 [![Network](https://img.shields.io/badge/Network-Testnet-yellow)](https://stellar.expert/explorer/testnet)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-
-</div>
 
 ---
 
@@ -30,7 +26,7 @@ Every tip is recorded in a Rust-based [Soroban](https://soroban.stellar.org) sma
 ## ✨ Features
 
 | Feature | Details |
-|---|---|
+| --- | --- |
 | 🔗 **Freighter Wallet** | One-click connect with browser extension signing |
 | ✦ **Send XLM Tips** | Quick amounts (0.5 / 1 / 2 / 5 / 10 XLM) or custom |
 | 📜 **On-Chain History** | Every tip stored permanently in Soroban persistent storage |
@@ -44,7 +40,7 @@ Every tip is recorded in a Rust-based [Soroban](https://soroban.stellar.org) sma
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|---|---|
+| --- | --- |
 | **Frontend** | React 18 + Vite 5 |
 | **Styling** | Tailwind CSS 3 |
 | **Blockchain** | Stellar Soroban (Testnet) |
@@ -57,7 +53,7 @@ Every tip is recorded in a Rust-based [Soroban](https://soroban.stellar.org) sma
 
 ## 📁 Project Structure
 
-```
+```text
 crypto-tip-jar/
 ├── contract/                    ← Rust smart contract
 │   ├── src/lib.rs               ← Contract logic (tip + get_tips)
@@ -86,7 +82,7 @@ crypto-tip-jar/
 ### Prerequisites
 
 | Tool | Version | Install |
-|---|---|---|
+| --- | --- | --- |
 | Rust | Latest stable | [rustup.rs](https://rustup.rs) |
 | stellar-cli | v26 | [GitHub](https://github.com/stellar/stellar-cli) |
 | Node.js | v18+ | [nodejs.org](https://nodejs.org) |
@@ -97,8 +93,8 @@ crypto-tip-jar/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/crypto-tip-jar.git
-cd crypto-tip-jar
+git clone https://github.com/Apurba2509/Crypto-Tip-Jar.git
+cd Crypto-Tip-Jar
 ```
 
 ---
@@ -116,7 +112,7 @@ npm install
 
 The smart contract is live on **Stellar Testnet**:
 
-```
+```text
 Contract ID: CA4LI5SUZLIXESGSHGXIGJXZZDAPJB32GZRDZASQL3EL3ZQGLNCKHF2B
 ```
 
@@ -131,7 +127,7 @@ cd frontend
 npm run dev
 ```
 
-Open **http://localhost:5173** in Chrome with the Freighter extension installed.
+Open **<http://localhost:5173>** in Chrome with the Freighter extension installed.
 
 ---
 
@@ -140,7 +136,7 @@ Open **http://localhost:5173** in Chrome with the Freighter extension installed.
 1. Install [Freighter](https://freighter.app) Chrome extension
 2. Switch Freighter to **Testnet** (Settings → Network → Test Network)
 3. Get free test XLM: paste your address at [friendbot.stellar.org](https://friendbot.stellar.org)
-4. Open http://localhost:5173 → click **Connect Wallet**
+4. Open <http://localhost:5173> → click **Connect Wallet**
 5. Enter an amount and click **Send Tip** 🎉
 
 ---
@@ -152,7 +148,7 @@ Open **http://localhost:5173** in Chrome with the Freighter extension installed.
 The Soroban contract exposes two public functions:
 
 | Function | Arguments | Returns | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `tip` | `tipper: Address`, `amount: i128` | `()` | Records a tip permanently on-chain |
 | `get_tips` | — | `Vec<TipEntry>` | Returns full tip history |
 
@@ -174,32 +170,39 @@ pub struct TipEntry {
 If you want to deploy your own instance:
 
 ### Step 1 — Add WASM build target
+
 ```bash
 rustup target add wasm32-unknown-unknown
 ```
 
 ### Step 2 — Build the contract
+
 ```bash
 cd contract
 stellar contract build
 ```
 
 ### Step 3 — Generate and fund a deployer key
+
 ```bash
 stellar keys generate mykey --network testnet
 # Fund it via browser: https://friendbot.stellar.org/?addr=<YOUR_KEY_ADDRESS>
 ```
 
 ### Step 4 — Deploy using the Node.js script
+
 ```bash
 cd frontend
 npm install
 node deploy.cjs "your seed phrase here"
 ```
+
 > The deploy script uses Node.js instead of `stellar-cli` to avoid Windows SSL certificate issues.
 
 ### Step 5 — Update the Contract ID
+
 In `frontend/src/utils/contract.js` line 23:
+
 ```js
 export const CONTRACT_ID = "YOUR_NEW_CONTRACT_ID_HERE";
 ```
@@ -218,7 +221,7 @@ export const CONTRACT_ID = "YOUR_NEW_CONTRACT_ID_HERE";
 ## 🐛 Common Issues
 
 | Issue | Fix |
-|---|---|
+| --- | --- |
 | Freighter not detected | Make sure extension is installed and on **Testnet** |
 | `insufficient balance` | Get free XLM at [friendbot.stellar.org](https://friendbot.stellar.org) |
 | Tips not showing | Check CONTRACT_ID in `contract.js` matches deployed contract |
@@ -230,13 +233,13 @@ export const CONTRACT_ID = "YOUR_NEW_CONTRACT_ID_HERE";
 ## 🔗 Resources
 
 | Resource | URL |
-|---|---|
-| Soroban Docs | https://soroban.stellar.org |
-| Stellar SDK | https://github.com/stellar/js-stellar-sdk |
-| Freighter Wallet | https://freighter.app |
-| Testnet Explorer | https://stellar.expert/explorer/testnet |
-| Friendbot (free XLM) | https://friendbot.stellar.org |
-| Stellar Laboratory | https://laboratory.stellar.org |
+| --- | --- |
+| Soroban Docs | [soroban.stellar.org](https://soroban.stellar.org) |
+| Stellar SDK | [github.com/stellar/js-stellar-sdk](https://github.com/stellar/js-stellar-sdk) |
+| Freighter Wallet | [freighter.app](https://freighter.app) |
+| Testnet Explorer | [stellar.expert/explorer/testnet](https://stellar.expert/explorer/testnet) |
+| Friendbot (free XLM) | [friendbot.stellar.org](https://friendbot.stellar.org) |
+| Stellar Laboratory | [laboratory.stellar.org](https://laboratory.stellar.org) |
 
 ---
 
@@ -246,10 +249,8 @@ MIT — feel free to fork and build on this!
 
 ---
 
-<div align="center">
+## 🌐 Live Links
+
+[View Contract on Stellar Explorer](https://stellar.expert/explorer/testnet/contract/CA4LI5SUZLIXESGSHGXIGJXZZDAPJB32GZRDZASQL3EL3ZQGLNCKHF2B)
 
 **Made with ❤️ on Stellar Soroban Testnet**
-
-[View on Stellar Explorer ↗](https://stellar.expert/explorer/testnet/contract/CA4LI5SUZLIXESGSHGXIGJXZZDAPJB32GZRDZASQL3EL3ZQGLNCKHF2B)
-
-</div>
